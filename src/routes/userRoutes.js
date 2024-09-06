@@ -3,7 +3,10 @@ const router = Router();
 const userController = require('../controllers/userControllers'); // Asegúrate de ajustar la ruta según tu estructura de proyecto
 const {verificarToken} = require('../middleware/authToken')
 // Ruta para agregar un nuevo usuario
-router.post('/registrar', userController.addUsers);
+router.post('/signup', userController.signUpUsers);
+
+// Ruta para login un nuevo usuario
+router.post('/signin', userController.signInUsers);
 
 // Ruta para listar todos los usuarios
 router.get('/listar', verificarToken, userController.listUsers);
