@@ -1,14 +1,21 @@
 const express = require('express')
-require('./db')
+const userRoutes = require('./routes/userRoutes');
 
 const app = express()
-const port = process.env.PORT || 9000;
 
+// Configura el middleware para analizar JSON
+app.use(express.json()); 
+app.use(express.urlencoded({extended: false}))
+// Usa las rutas definidas
+app.use('/api/users', userRoutes);
 
 app.get('/', function (req, res) {
   res.send('Hello World')
 })
 
-app.listen(port, () => {
-    console.log("Conected app")
-})
+// Inicia el servidor
+// app.listen(port, () => {
+//     console.log("Conected app")
+// })
+
+module.exports = app;
